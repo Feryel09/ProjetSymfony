@@ -1,3 +1,26 @@
-{%for i in tab %}
-  {{i.id }} {{i.username }} {{ i.nbrBooks }} <br>
-  {% endfor %}
+<h1>List of Authors</h1>
+
+{% if tab is empty %}
+    <p>No authors found.</p>
+{% else %}
+    <table border="1" cellpadding="5" cellspacing="0">
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Number of Books</th>
+        </tr>
+
+        {% for i in tab %}
+            <tr>
+                <td>{{ i.id }}</td>
+                <td>{{ i.username }}</td>
+                <td>{{ i.nbrBooks }}</td>
+                 <td><a href="{{ path('update_auth',{'id':i.id}) }}">update</a>
+                 <td><a href="{{ path('show_auth',{'id':i.id}) }}">show</a>
+                 <td><a href="{{ path('remove_auth',{'id':i.id}) }}">remove</a>
+
+            </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ path('addForm_auth') }}">Add new Author</a>
+{% endif %}

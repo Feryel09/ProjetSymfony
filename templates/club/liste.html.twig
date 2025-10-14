@@ -1,0 +1,39 @@
+<h1>le nombre des formations est: {{formation |length}}</h1>
+{% set nbMax=0 %}
+{%for form in formation %}
+ {% set nbMax=max(form.Nb_participants,nbMax) %}
+ {% endfor %}
+
+<table border="1">
+ <tr>
+  <th>reference</th>
+  <th>titre</th>
+  <th>description</th>
+  <th>Nb participants</th>
+  </tr>
+  {% for f in formation %}
+    <tr>
+    {#{% if f.Nb_participants == nbMax %}#}
+    {#{% if 'theorique' in f.description %}#}
+    <td>{{ f.id }}</td>
+    <td>{{ f.Titre | upper }}</td>
+    <td>{{f.description}}</td>
+    <td>{{f.Nb_participants}}</td>
+     {#  {% else %}
+      <strong>Tableau vide </strong> #}
+
+    {#{% endif %}#}
+    {#{% endif %}#}
+    <td>
+     {% if f.Nb_participants == 0 %}
+        <button>Participer</button>
+        {% endif %}
+    </td>
+    </tr>
+  {% endfor %}
+</table>
+{% set nbTot=0 %}
+{% for f in formation %}
+{% set nbTot=nbTot+f.Nb_participants %}
+{% endfor %}
+<p>Le nombre total des participants est : {{nbTot}}</p>

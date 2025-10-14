@@ -1,0 +1,21 @@
+<h1 style="color:#2C3E50;">Liste des produits</h1>
+<h1>le nombre des formations est: {{products |length}}</h1>
+
+{% if products is empty %}
+    <p>Aucun produit enregistré.</p>
+{% else %}
+    <table border="1" cellpadding="8">
+        <tr>
+            <th>ID</th>
+            <th>Titre</th>
+            <th>Prix</th>
+        </tr>
+        {% for p in products %}
+            <tr>
+                <td>{{ p.id }}</td>
+                <td>{{ p.title | upper }}</td>
+                <td>{{ p.price }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endif %}
